@@ -1,0 +1,289 @@
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Manrope%3Awght%40400%3B500%3B700%3B800&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900"
+    />
+
+    <title>Stitch Design</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+      .hidden { display: none; }
+      .form-transition { transition: all 0.3s ease-in-out; }
+    </style>
+    <script>
+      function toggleForms() {
+        const loginForm = document.querySelector('.login-form');
+        const signupForm = document.getElementById('signupForm');
+        if (loginForm && signupForm) {
+          const isLoginVisible = !loginForm.classList.contains('hidden');
+          loginForm.classList.toggle('hidden', !isLoginVisible);
+          signupForm.classList.toggle('hidden', isLoginVisible);
+          // Scroll to top of form for better UX
+        }
+      }
+
+      function handleCredentialResponse(response) {
+        try {
+          const idToken = response && response.credential;
+          if (idToken) {
+            // Optionally store the token for later use
+            try { localStorage.setItem('google_id_token', idToken); } catch (e) {}
+            // Redirect to home after selecting an account
+            window.location.href = 'home.html';
+            return;
+          }
+        } catch (err) {
+          console.error('Google Sign-In callback error:', err);
+        }
+        // Fallback: stay on page if no credential
+        console.warn('No Google credential received.');
+      }
+      
+      document.addEventListener('DOMContentLoaded', function() {
+        try {
+          google.accounts.id.initialize({
+            client_id: "366312949881-c1pvjbgeqt614i2vk9ekdfd0n7mc6v8m.apps.googleusercontent.com",
+            callback: handleCredentialResponse,
+            // Disable FedCM and use the older flow
+            use_fedcm_for_prompt: false,
+            // Auto select to avoid FedCM prompt
+            auto_select: false
+          });
+
+          // Only render button if element exists
+          const signInButton = document.querySelector(".g_id_signin");
+          if (signInButton) {
+            google.accounts.id.renderButton(
+              signInButton,
+              { 
+                type: 'standard',
+                theme: 'outline',
+                size: 'large',
+                width: signInButton.offsetWidth,
+                text: 'signin_with',
+                shape: 'rectangular',
+                logo_alignment: 'left'
+              }
+            );
+          } else {
+            console.error('Google Sign-In button container not found');
+          }
+        } catch (error) {
+          console.error('Error initializing Google Sign-In:', error);
+        }
+      });
+
+      // Toggle between login and signup forms
+      document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOM fully loaded');
+        
+        // Get form elements
+        const loginForm = document.querySelector('.login-form');
+        const signupForm = document.getElementById('signupForm');
+        const showSignupLink = document.getElementById('showSignup');
+        const showLoginLink = document.getElementById('showLogin');
+
+        console.log('Elements found:', { loginForm, signupForm, showSignupLink, showLoginLink });
+
+        // Toggle functions
+        function showSignup(e) {
+          if (e) e.preventDefault();
+          console.log('Showing signup form');
+          console.log('Before toggle - login display:', loginForm.style.display, 'signup display:', signupForm.style.display);
+          
+          loginForm.style.display = 'none';
+          signupForm.style.display = 'block';
+          
+          console.log('After toggle - login display:', loginForm.style.display, 'signup display:', signupForm.style.display);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          return false;
+        }
+
+        function showLogin(e) {
+          if (e) e.preventDefault();
+          signupForm.style.display = 'none';
+          loginForm.style.display = 'block';
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          return false;
+        }
+
+        // Event listeners
+        if (showSignupLink) showSignupLink.onclick = showSignup;
+        if (showLoginLink) showLoginLink.onclick = showLogin;
+
+        // Handle signup form submission
+        const signupFormElement = document.getElementById('signupFormElement');
+        if (signupFormElement) {
+          signupFormElement.onsubmit = function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('signupEmail').value.trim();
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            // Basic validation
+            if (password !== confirmPassword) {
+              alert('Passwords do not match');
+              return false;
+            }
+
+            if (password.length < 8) {
+              alert('Password must be at least 8 characters');
+              return false;
+            }
+
+            // Here you would typically send this data to your backend
+            console.log('Signup attempt:', { email });
+            
+            // For now, just redirect to home
+            window.location.href = 'home.html';
+            return false;
+          };
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <div class="relative flex flex-col bg-[#162013] dark group/design-root overflow-x-hidden min-h-screen" style='font-family: Manrope, "Noto Sans", sans-serif;'>
+      <div class="layout-container">
+        <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#2e4328] px-10 py-3">
+          <div class="flex items-center gap-4 text-white">
+            <div class="size-4">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+            </div>
+            <h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">StockWise</h2>
+          </div>
+          <div class="flex-1"></div>
+          </div>
+        </header>
+        <div class="px-4 pt-2">
+          <div class="flex flex-col items-center">
+            <h2 class="text-white text-[28px] font-bold leading-tight mb-4">Welcome back</h2>
+            <div class="login-form w-full max-w-[480px] mx-auto" style="display: block;">
+            <div class="flex max-w-[480px] flex-wrap items-end gap-2 px-4 py-2">
+              <label class="flex flex-col min-w-40 flex-1">
+                <p class="text-white text-base font-medium leading-normal pb-2">Email</p>
+                <input
+                  placeholder="Enter your username"
+                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-white focus:outline-0 focus:ring-0 border border-[#426039] bg-[#21301c] focus:border-[#426039] h-14 placeholder:text-[#a2c398] p-[15px] text-base font-normal leading-normal"
+                  value=""
+                />
+              </label>
+            </div>
+            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
+              <label class="flex flex-col min-w-40 flex-1">
+                <p class="text-white text-base font-medium leading-normal pb-2">Password</p>
+                <input
+                  type="password"
+                  placeholder="Enter your password"
+                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-white focus:outline-0 focus:ring-0 border border-[#426039] bg-[#21301c] focus:border-[#426039] h-14 placeholder:text-[#a2c398] p-[15px] text-base font-normal leading-normal"
+                  value=""
+                />
+              </label>
+            </div>
+            <p class="text-[#a2c398] text-sm font-normal leading-normal pb-3 pt-1 px-4">
+              <a href="#" id="showSignup" class="hover:underline">Create new account</a>
+              <span class="mx-2">•</span>
+              <a href="#" class="hover:underline">Forgot password?</a>
+            </p>
+            <div class="flex px-4 py-3">
+              <button
+                onclick="window.location.href='home.html'; return false;"
+                class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 flex-1 bg-[#54d22d] text-[#162013] text-sm font-bold leading-normal tracking-[0.015em] hover:bg-[#4ab826] transition-colors duration-200"
+              >
+                <span class="truncate">Log in</span>
+              </button>
+            </div>
+            
+            <!-- OR Divider -->
+            <!-- Google Sign-In Button -->
+            <div class="flex flex-col items-center mb-4">
+              <div class="relative w-full my-4">
+                <div class="absolute inset-0 flex items-center">
+                  <div class="w-full border-t border-[#426039]"></div>
+                </div>
+                <div class="relative flex justify-center">
+                  <span class="px-2 bg-[#162013] text-[#a2c398] text-sm">OR</span>
+                </div>
+              </div>
+              <div class="w-full">
+                  <div id="g_id_onload"
+                       data-client_id="366312949881-c1pvjbgeqt614i2vk9ekdfd0n7mc6v8m.apps.googleusercontent.com"
+                       data-auto_prompt="false">
+                  </div>
+                  <div class="g_id_signin"
+                       style="width: 240px; margin: 20px auto 0;">
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+
+            <!-- Signup Form (initially hidden) -->
+            <div id="signupForm" class="w-full max-w-[480px] mx-auto mt-8" style="display: none;">
+              <h2 class="text-white text-2xl font-bold mb-6 text-center">Create Account</h2>
+              <form id="signupFormElement" class="space-y-4 px-4">
+                <div>
+                  <label class="block text-white text-sm font-medium mb-1">Email</label>
+                  <input
+                    type="email"
+                    id="signupEmail"
+                    required
+                    class="w-full rounded-lg bg-[#21301c] border border-[#426039] text-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#54d22d] focus:border-transparent"
+                    placeholder="Enter your email"
+                  >
+                </div>
+                <div>
+                  <label class="block text-white text-sm font-medium mb-1">Password</label>
+                  <input
+                    type="password"
+                    id="signupPassword"
+                    required
+                    minlength="8"
+                    class="w-full rounded-lg bg-[#21301c] border border-[#426039] text-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#54d22d] focus:border-transparent"
+                    placeholder="Create a password"
+                  >
+                  <p class="text-xs text-[#a2c398] mt-1">Must be at least 8 characters</p>
+                </div>
+                <div>
+                  <label class="block text-white text-sm font-medium mb-1">Confirm Password</label>
+                  <input
+                    type="password"
+                    id="confirmPassword"
+                    required
+                    class="w-full rounded-lg bg-[#21301c] border border-[#426039] text-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#54d22d] focus:border-transparent"
+                    placeholder="Confirm your password"
+                  >
+                </div>
+                <button
+                  type="submit"
+                  class="w-full bg-[#54d22d] hover:bg-[#4ab826] text-[#162013] font-bold py-3 px-4 rounded-lg transition-colors duration-200"
+                >
+                  Sign Up
+                </button>
+                <p class="text-center text-[#a2c398] text-sm mt-4">
+                  Already have an account? 
+                  <a href="#" id="showLogin" class="text-[#54d22d] hover:underline">Log in</a>
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+</body>
+</html>

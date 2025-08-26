@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chart Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            background-color: #162013;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .chart-container {
+            background-color: #1e2a1b;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .chart-wrapper {
+            height: 400px;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <h1>Chart.js Test</h1>
+    
+    <div class="chart-container">
+        <h2>Line Chart Test</h2>
+        <div class="chart-wrapper">
+            <canvas id="lineChart"></canvas>
+        </div>
+    </div>
+    
+    <div class="chart-container">
+        <h2>Bar Chart Test</h2>
+        <div class="chart-wrapper">
+            <canvas id="barChart"></canvas>
+        </div>
+    </div>
+    
+    <div class="chart-container">
+        <h2>Multi-Dataset Chart Test</h2>
+        <div class="chart-wrapper">
+            <canvas id="multiChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        // Test Line Chart
+        const lineCtx = document.getElementById('lineChart');
+        const lineChart = new Chart(lineCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Stock Price',
+                    data: [100, 120, 115, 130, 125, 140],
+                    borderColor: '#54d22d',
+                    backgroundColor: 'rgba(84, 210, 45, 0.1)',
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: '#ffffff'
+                        }
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        backgroundColor: 'rgba(30, 42, 27, 0.9)',
+                        titleColor: '#ffffff',
+                        bodyColor: '#a2c398',
+                        borderColor: '#426039',
+                        borderWidth: 1
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            color: '#a2c398'
+                        },
+                        grid: {
+                            color: '#426039'
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            color: '#a2c398'
+                        },
+                        grid: {
+                            color: '#426039'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Test Bar Chart
+        const barCtx = document.getElementById('barChart');
+        const barChart = new Chart(barCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Linear Regression', 'Random Forest', 'ARIMA'],
+                datasets: [{
+                    label: 'RMSE Score',
+                    data: [0.05, 0.03, 0.08],
+                    backgroundColor: [
+                        'rgba(84, 210, 45, 0.8)',
+                        'rgba(255, 107, 107, 0.8)',
+                        'rgba(255, 193, 7, 0.8)'
+                    ],
+                    borderColor: [
+                        '#54d22d',
+                        '#ff6b6b',
+                        '#ffc107'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: '#ffffff'
+                        }
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        backgroundColor: 'rgba(30, 42, 27, 0.9)',
+                        titleColor: '#ffffff',
+                        bodyColor: '#a2c398',
+                        borderColor: '#426039',
+                        borderWidth: 1
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            color: '#a2c398'
+                        },
+                        grid: {
+                            color: '#426039'
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            color: '#a2c398'
+                        },
+                        grid: {
+                            color: '#426039'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Test Multi-Dataset Chart
+        const multiCtx = document.getElementById('multiChart');
+        const multiChart = new Chart(multiCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [
+                    {
+                        label: 'Historical Prices',
+                        data: [100, 120, 115, 130, 125, 140],
+                        borderColor: '#54d22d',
+                        backgroundColor: 'rgba(84, 210, 45, 0.1)',
+                        borderWidth: 2,
+                        fill: false,
+                        tension: 0.1
+                    },
+                    {
+                        label: 'Predicted Prices',
+                        data: [null, null, null, null, null, 145],
+                        borderColor: '#ff6b6b',
+                        backgroundColor: 'rgba(255, 107, 107, 0.1)',
+                        borderWidth: 2,
+                        fill: false,
+                        tension: 0.1,
+                        borderDash: [5, 5]
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: '#ffffff'
+                        }
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        backgroundColor: 'rgba(30, 42, 27, 0.9)',
+                        titleColor: '#ffffff',
+                        bodyColor: '#a2c398',
+                        borderColor: '#426039',
+                        borderWidth: 1
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            color: '#a2c398'
+                        },
+                        grid: {
+                            color: '#426039'
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            color: '#a2c398'
+                        },
+                        grid: {
+                            color: '#426039'
+                        }
+                    }
+                }
+            }
+        });
+
+        console.log('Charts initialized successfully!');
+    </script>
+</body>
+</html>
+

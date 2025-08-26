@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Connection</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        #output { margin-top: 20px; padding: 10px; border: 1px solid #ccc; border-radius: 4px; }
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Test Connection to Backend</h1>
+    
+    <div>
+        <button onclick="testConnection()">Test Connection</button>
+        <button onclick="testSearch('AAPL')">Test Search (AAPL)</button>
+    </div>
+    
+    <div id="output">Click a button to test the connection</div>
+    
+    <script>
+        const API_BASE_URL = 'http://localhost:5000';
+        
+        function log(message, isError = false) {
+            const output = document.getElementById('output');
+            const messageElement = document.createElement('div');
+            messageElement.textContent = message;
+            messageElement.className = isError ? 'error' : 'success';
+            output.prepend(messageElement);
+            console.log(message);
+        }
+        
+        async function testConnection() {
+            try {
+                log('Testing connection to server...');
+                const response = await axios.get(`${API_BASE_URL}/`);
+                log(`✅ Success! Server says: ${response.data}`);
+            } catch (error) {
+                log(`❌ Error: ${error.message}`, true);
+                if (error.response) {
+                    log(`Status: ${error.response.status}`, true);
+                    log(`Response: ${JSON.stringify(error.response.data)}`, true);
+                }
+            }
+        }
+        
+        async function testSearch(query) {
+            try {
+                log(`Searching for: ${query}...`);
+                const response = await axios.get(`${API_BASE_URL}/api/search`, {
+                    params: { q: query }
+                });
+                log(`✅ Search successful! Found ${response.data.results?.length || 0} results`);
+                console.log('Search results:', response.data);
+            } catch (error) {
+                log(`❌ Search failed: ${error.message}`, true);
+                if (error.response) {
+                    log(`Status: ${error.response.status}`, true);
+                    log(`Response: ${JSON.stringify(error.response.data)}`, true);
+                }
+            }
+        }
+    </script>
+</body>
+</html>

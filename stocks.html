@@ -1,0 +1,1360 @@
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Manrope%3Awght%40400%3B500%3B700%3B800&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900"
+    />
+
+    <title>Stitch Design</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div class="relative flex size-full min-h-screen flex-col bg-[#162013] dark group/design-root overflow-x-hidden" style='font-family: Manrope, "Noto Sans", sans-serif;'>
+      <div class="layout-container flex h-full grow flex-col">
+        <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#2e4328] px-10 py-3">
+          <div class="flex items-center gap-8">
+            <div class="flex items-center gap-4 text-white">
+              <div class="size-4">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z"
+                    fill="currentColor"
+                  ></path>
+                </svg>
+              </div>
+              <h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">StockWise</h2>
+            </div>
+            <div class="flex items-center gap-9">
+              <a class="text-white text-sm font-medium leading-normal" href="#">Home</a>
+              <a class="text-white text-sm font-medium leading-normal" href="#">Portfolio</a>
+              <a class="text-white text-sm font-medium leading-normal" href="#">Leaderboard</a>
+            </div>
+          </div>
+          <div class="flex flex-1 justify-end gap-8">
+            <button
+              class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 bg-[#2e4328] text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5"
+            >
+              <div class="text-white" data-icon="Bell" data-size="20px" data-weight="regular">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                  <path
+                    d="M221.8,175.94C216.25,166.38,208,139.33,208,104a80,80,0,1,0-160,0c0,35.34-8.26,62.38-13.81,71.94A16,16,0,0,0,48,200H88.81a40,40,0,0,0,78.38,0H208a16,16,0,0,0,13.8-24.06ZM128,216a24,24,0,0,1-22.62-16h45.24A24,24,0,0,1,128,216ZM48,184c7.7-13.24,16-43.92,16-80a64,64,0,1,1,128,0c0,36.05,8.28,66.73,16,80Z"
+                  ></path>
+                </svg>
+              </div>
+            </button>
+            <div
+              class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
+              style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCdEu2qfXdWS2WA0FQav0TU1W3wm0Ip20urINqi8v2SKvzJvyCFxNEMOMm1UVfelW3zuIlkfbWGkvrp1bhQvHmF_wzEy1j1eVWqLJjx7L3pd726jcWW_WsO7cbeoHf0m_OEnlBtpthWhFFC4NLz2ThyAmbm-jQ1mvDuh3RBDJ1Aq9bLP2fP6eNuA87fqoab7JHA2QW6IJyznmn5IZbBLrR7f80WomOnMA43R37zKN6wRNkNWfRal8EcIJYiEB67owVzKiQJo5UEG7w");'
+            ></div>
+          </div>
+        </header>
+        <div class="gap-1 px-6 flex flex-1 justify-center py-5">
+          <div class="layout-content-container flex flex-col w-80">
+            <div class="pb-3">
+              <div class="flex border-b border-[#426039] px-4 gap-8">
+                <a class="flex flex-col items-center justify-center border-b-[3px] border-b-[#54d22d] text-white pb-[13px] pt-4" href="#">
+                  <p class="text-white text-sm font-bold leading-normal tracking-[0.015em]">Stocks</p>
+                </a>
+                <a class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-[#a2c398] pb-[13px] pt-4" href="#">
+                  <p class="text-[#a2c398] text-sm font-bold leading-normal tracking-[0.015em]">Crypto</p>
+                </a>
+              </div>
+            </div>
+            <div class="px-4 py-3">
+              <div class="relative w-full">
+                <div class="flex w-full flex-1 items-stretch rounded-xl h-10 bg-[#2e4328]">
+                  <div class="text-[#a2c398] flex items-center justify-center pl-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                      <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
+                    </svg>
+                  </div>
+                  <input
+                    id="sidebarSearchInput"
+                    type="text"
+                    placeholder="Search stocks..."
+                    class="w-full bg-transparent border-none text-white text-sm font-normal leading-normal placeholder:text-[#a2c398] focus:outline-none focus:ring-0 px-2"
+                    autocomplete="off"
+                  />
+                </div>
+                <div id="sidebarSearchResults" class="hidden absolute z-10 mt-1 w-full bg-[#2e4328] rounded-lg shadow-lg max-h-60 overflow-auto">
+                  <!-- Search results will be populated here -->
+                </div>
+              </div>
+            </div>
+            
+            
+          </div>
+          <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+            <div class="flex flex-wrap justify-between gap-3 p-4">
+              <div class="flex min-w-72 flex-col gap-3">
+                <p id="headerStockName" class="text-white tracking-light text-[32px] font-bold leading-tight"></p>
+                <p id="headerStockSymbol" class="text-[#a2c398] text-sm font-normal leading-normal"></p>
+              </div>
+            </div>
+            <div class="pb-3">
+              <div class="flex border-b border-[#426039] px-4 gap-8">
+                <button id="tabOverview" class="flex flex-col items-center justify-center border-b-[3px] border-b-[#54d22d] text-white pb-[13px] pt-4">
+                  <p class="text-white text-sm font-bold leading-normal tracking-[0.015em]">Overview</p>
+                </button>
+                <button id="tabPrediction" class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-[#a2c398] pb-[13px] pt-4">
+                  <p class="text-[#a2c398] text-sm font-bold leading-normal tracking-[0.015em]">Prediction</p>
+                </button>
+              </div>
+            </div>
+            <div class="flex flex-wrap gap-4 px-4 py-6" id="stockOverviewContainer">
+              <!-- Stock overview will be dynamically inserted here -->
+              <div class="flex flex-col items-center justify-center w-full h-64 text-center">
+                <p class="text-gray-400 mb-4">Search for a stock to see its details</p>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </div>
+            </div>
+            
+            <!-- Overview Chart -->
+            <div class="px-4 pb-6">
+              <!-- Chart Type Toggle -->
+              <div class="flex gap-2 mb-4">
+                <button id="chartTypeLine" class="px-4 py-2 bg-[#54d22d] text-[#162013] rounded-lg font-medium text-sm">Line Chart</button>
+                <button id="chartTypeCandlestick" class="px-4 py-2 bg-[#2e4328] text-white rounded-lg font-medium text-sm">Candlestick</button>
+              </div>
+              
+              <div class="bg-[#1e2a1b] rounded-xl p-4">
+                <h3 class="text-white text-lg font-medium mb-4">Stock Performance</h3>
+                <div class="h-64">
+                  <canvas id="overviewChart"></canvas>
+                </div>
+              </div>
+              
+              <!-- Volume Chart -->
+              <div class="bg-[#1e2a1b] rounded-xl p-4 mt-4">
+                <h3 class="text-white text-lg font-medium mb-4">Trading Volume</h3>
+                <div class="h-48">
+                  <canvas id="volumeChart"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-wrap gap-4 px-4 py-6 hidden" id="predictionContainer">
+              <div class="w-full">
+                <div class="flex min-w-72 flex-1 flex-col gap-2 rounded-xl border border-[#426039] p-6 mb-6">
+                  <p class="text-white text-lg font-medium">Price Prediction</p>
+                  <div class="grid grid-cols-1 md:grid-cols-5 gap-3 items-end">
+                    <div>
+                      <label class="block text-xs text-[#a2c398] mb-1">From date</label>
+                      <input id="predFrom" type="date" class="w-full bg-[#1e2a1b] text-white rounded px-3 py-2 border border-[#426039]" />
+                    </div>
+                    <div>
+                      <label class="block text-xs text-[#a2c398] mb-1">To date</label>
+                      <input id="predTo" type="date" class="w-full bg-[#1e2a1b] text-white rounded px-3 py-2 border border-[#426039]" />
+                    </div>
+                    <div>
+                      <label class="block text-xs text-[#a2c398] mb-1">Model</label>
+                      <select id="predModel" class="w-full bg-[#1e2a1b] text-white rounded px-3 py-2 border border-[#426039]">
+                        <option value="lr">Linear Regression</option>
+                        <option value="rf">Random Forest</option>
+                        <option value="arima">ARIMA</option>
+                      </select>
+                    </div>
+                    <div class="md:col-span-2">
+                      <button id="runPrediction" class="w-full h-10 bg-[#2e4328] text-white rounded font-semibold">Predict</button>
+                    </div>
+                  </div>
+                  <div class="flex gap-2 mt-3">
+                    <button id="runAllModels" class="flex-1 h-10 bg-[#54d22d] text-[#162013] rounded font-semibold">Compare All Models</button>
+                  </div>
+                  <div id="predictionContent" class="text-gray-300 text-sm mt-4">Select a stock to view prediction.</div>
+                  
+                  <!-- Chart containers -->
+                  <div class="mt-6 space-y-6">
+                    <!-- Historical Price Chart -->
+                    <div class="bg-[#1e2a1b] rounded-xl p-4">
+                      <h3 class="text-white text-lg font-medium mb-4">Historical Price Chart</h3>
+                      <div class="h-64">
+                        <canvas id="historicalChart"></canvas>
+                      </div>
+                    </div>
+                    
+                    <!-- Prediction Chart -->
+                    <div class="bg-[#1e2a1b] rounded-xl p-4">
+                      <h3 class="text-white text-lg font-medium mb-4">Price Prediction Chart</h3>
+                      <div class="h-64">
+                        <canvas id="predictionChart"></canvas>
+                      </div>
+                    </div>
+                    
+                    <!-- Model Comparison Chart -->
+                    <div class="bg-[#1e2a1b] rounded-xl p-4">
+                      <h3 class="text-white text-lg font-medium mb-4">Model Comparison</h3>
+                      <div class="h-64">
+                        <canvas id="modelComparisonChart"></canvas>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">About</h2>
+            <p class="text-white text-base font-normal leading-normal pb-3 pt-1 px-4">
+              Search for a stock to view detailed information and analysis.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+    // Sidebar search elements
+    const sidebarSearchInput = document.getElementById('sidebarSearchInput');
+    const sidebarSearchResults = document.getElementById('sidebarSearchResults');
+    let searchTimeout;
+
+    // Debounce search to avoid too many API calls
+    function setupSearch(inputElement, resultsElement) {
+      inputElement.addEventListener('input', (e) => {
+        clearTimeout(searchTimeout);
+        const query = e.target.value.trim();
+        
+        if (query.length < 2) {
+          resultsElement.classList.add('hidden');
+          return;
+        }
+
+        searchTimeout = setTimeout(() => {
+          searchStocks(query, resultsElement);
+        }, 300);
+      });
+
+      // Close search results when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!inputElement.contains(e.target) && !resultsElement.contains(e.target)) {
+          resultsElement.classList.add('hidden');
+        }
+      });
+    }
+
+    // Initialize search functionality for sidebar
+    if (sidebarSearchInput && sidebarSearchResults) {
+      setupSearch(sidebarSearchInput, sidebarSearchResults);
+    }
+
+    // API Configuration
+    const API_BASE_URL = 'http://localhost:5000';
+    
+    // Verify API_BASE_URL is set
+    console.log('API_BASE_URL:', API_BASE_URL);
+    if (!API_BASE_URL) {
+      console.error('API_BASE_URL is not set!');
+      alert('Error: API base URL is not configured. Please check your settings.');
+    }
+    
+    async function searchStocks(query, resultsElement) {
+      try {
+        // Show loading state
+        resultsElement.innerHTML = '<div class="p-3 text-gray-400 text-sm">Searching...</div>';
+        resultsElement.classList.remove('hidden');
+        
+        console.log(`Searching for: ${query}`);
+        const response = await fetch(`${API_BASE_URL}/search?q=${encodeURIComponent(query)}`, { mode: 'cors' });
+        
+        if (!response.ok) {
+          throw new Error(`Failed to fetch from server: ${response.status} ${response.statusText}`);
+        }
+        
+        const results = await response.json();
+
+        // Normalize results to consistent shape expected by renderer
+        let formattedResults = results.map(stock => ({
+          symbol: stock.symbol,
+          name: stock.name || stock.description || 'N/A',
+          exchange: stock.exchange || 'Unknown Exchange',
+        }));
+
+        // Best-effort enrichment: fetch logo and industry for the first few results
+        const toEnrich = formattedResults.slice(0, 5);
+        try {
+          const profiles = await Promise.all(toEnrich.map(async (item) => {
+            try {
+              const r = await fetch(`${API_BASE_URL}/stock/${encodeURIComponent(item.symbol)}`, { mode: 'cors' });
+              if (!r.ok) return {};
+              const d = await r.json();
+              return { symbol: item.symbol, logo: d.logo || '', industry: d.industry || d.finnhubIndustry || '' };
+            } catch { return {}; }
+          }));
+          const bySymbol = Object.fromEntries(profiles.filter(p => p.symbol).map(p => [p.symbol, p]));
+          formattedResults = formattedResults.map(r => ({ ...r, ...(bySymbol[r.symbol] || {}) }));
+        } catch (e) {
+          console.warn('Enrichment failed:', e);
+        }
+
+        displayResults(formattedResults, resultsElement);
+      } catch (error) {
+        console.error('Error searching stocks:', error);
+        let errorMessage = 'Error fetching results';
+        
+        if (error.response) {
+          // Server responded with a status code outside 2xx
+          errorMessage = `Error: ${error.response.status} - ${error.response.data?.error || 'Server error'}`;
+          if (error.response.status === 401) {
+            errorMessage = 'Authentication error. Please check your API key.';
+          } else if (error.response.status === 429) {
+            errorMessage = 'Too many requests. Please wait a moment and try again.';
+          }
+        } else if (error.request) {
+          // Request was made but no response received
+          errorMessage = 'No response from server. Please check your connection.';
+        } else if (error.message) {
+          // Something happened in setting up the request
+          errorMessage = `Error: ${error.message}`;
+        }
+        
+        resultsElement.innerHTML = `
+          <div class="p-3 text-red-400 text-sm">
+            <div class="font-medium">${errorMessage}</div>
+            <div class="text-xs text-gray-500 mt-1">Try again or check the console for details.</div>
+          </div>`;
+        resultsElement.classList.remove('hidden');
+      }
+    }
+
+    function displayResults(results, resultsElement) {
+      if (!results || results.length === 0) {
+        resultsElement.innerHTML = `
+          <div class="p-3 text-center">
+            <div class="text-gray-400 text-sm">No stocks found</div>
+            <div class="text-xs text-gray-500 mt-1">Try a different search term</div>
+          </div>`;
+        resultsElement.classList.remove('hidden');
+        return;
+      }
+
+      // Clear previous results and event listeners
+      resultsElement.innerHTML = '';
+      
+      // Create a document fragment for better performance
+      const fragment = document.createDocumentFragment();
+      
+      results.forEach(stock => {
+        // Sanitize data to prevent XSS
+        const symbol = stock.symbol ? stock.symbol.replace(/[^a-zA-Z0-9.-]/g, '') : '';
+        const name = stock.name ? stock.name.replace(/[<>]/g, '') : 'N/A';
+        const exchange = stock.exchange ? stock.exchange.replace(/[^a-zA-Z0-9.-]/g, '') : 'N/A';
+        const industry = stock.industry ? String(stock.industry).replace(/[<>]/g, '') : '';
+        const logo = stock.logo && /^https?:\/\//.test(stock.logo) ? stock.logo : '';
+        
+        const stockElement = document.createElement('div');
+        stockElement.className = 'p-3 hover:bg-[#426039] cursor-pointer border-b border-[#3a4f32] last:border-0';
+        stockElement.innerHTML = `
+          <div class="flex items-center gap-3">
+            ${logo ? `<img src="${logo}" alt="${name}" class="w-8 h-8 rounded-full" onerror="this.style.display='none'" />` : `<div class="w-8 h-8 rounded-full bg-[#2e4328]"></div>`}
+            <div class="min-w-0">
+              <div class="font-medium text-white truncate">${symbol}</div>
+              <div class="text-xs text-gray-400 truncate">${name}</div>
+              <div class="text-[11px] text-gray-500 truncate">${industry ? industry + ' • ' : ''}${exchange}</div>
+            </div>
+          </div>
+        `;
+        
+        // Add click event listener directly
+        stockElement.addEventListener('click', (e) => {
+          e.stopPropagation();
+          window.currentSymbol = symbol;
+          selectStock(symbol, name);
+        });
+        
+        fragment.appendChild(stockElement);
+      });
+      
+      // Append all results at once
+      resultsElement.appendChild(fragment);
+      resultsElement.classList.remove('hidden');
+      
+      // Add click outside handler if not already added
+      if (!document.clickOutsideHandlerAdded) {
+        document.addEventListener('click', (e) => {
+          if (!resultsElement.contains(e.target) && e.target !== sidebarSearchInput) {
+            resultsElement.classList.add('hidden');
+          }
+        });
+        document.clickOutsideHandlerAdded = true;
+      }
+    }
+
+    async function selectStock(symbol, name = '') {
+      // Show loading state
+      document.body.classList.add('loading');
+      // Persist current symbol for other features (e.g., prediction)
+      try { window.currentSymbol = symbol; } catch (e) {}
+      
+      // Show loading message in the overview
+      const overviewElement = document.getElementById('stockOverview');
+      const searchResults = document.getElementById('searchResults');
+      
+      if (overviewElement) {
+        overviewElement.innerHTML = `
+          <div class="p-4">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center">
+                <svg class="w-4 h-4 text-blue-500 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+              </div>
+              <p class="text-white">Loading ${symbol} details...</p>
+            </div>
+          </div>
+        `;
+      }
+
+      // Hide search results
+      if (searchResults) {
+        searchResults.classList.add('hidden');
+      }
+      
+      console.log(`Fetching details for symbol: ${symbol}`);
+      
+      try {
+        const response = await fetch(`${API_BASE_URL}/stock/${encodeURIComponent(symbol)}`, { mode: 'cors' });
+        
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => ({}));
+          throw new Error(errorData.error || `Failed to fetch stock details: ${response.status} ${response.statusText}`);
+        }
+        
+        const stockData = await response.json();
+        
+        if (stockData.error) {
+          throw new Error(stockData.error);
+        }
+        
+        // Persist currency globally
+        try { window.currentCurrency = stockData.currency || 'USD'; } catch (e) {}
+        
+        // Format the data to match what updateStockDetails expects
+        const formattedData = {
+          symbol: stockData.symbol,
+          name: stockData.name,
+          price: stockData.price,
+          change: stockData.change,
+          changePercent: stockData.changePercent,
+          marketCap: stockData.marketCap,
+          volume: stockData.volume,
+          peRatio: stockData.peRatio,
+          dividendYield: stockData.dividendYield,
+          fiftyTwoWeekHigh: stockData.fiftyTwoWeekHigh,
+          fiftyTwoWeekLow: stockData.fiftyTwoWeekLow,
+          open: stockData.open,
+          high: stockData.high,
+          low: stockData.low,
+          previousClose: stockData.previousClose,
+          exchange: stockData.exchange,
+          industry: stockData.industry,
+          logo: stockData.logo,
+          history: stockData.history || [],
+          currency: stockData.currency || 'USD'
+        };
+        
+        // Update URL with the selected symbol
+        try {
+          const newUrl = new URL(window.location);
+          newUrl.searchParams.set('symbol', symbol);
+          console.log('Updating URL to:', newUrl.toString());
+          window.history.pushState({ symbol }, '', newUrl);
+        } catch (urlError) {
+          console.error('Error updating URL:', urlError);
+        }
+        
+        // Update the UI with stock details
+        console.log('Calling updateStockDetails...');
+        updateStockDetails(formattedData);
+        console.log('updateStockDetails completed');
+        try { window.currentSymbol = formattedData.symbol || symbol; } catch (e) {}
+        
+        // Initialize charts and update overview chart
+        setTimeout(() => {
+          initializeCharts();
+          updateOverviewChart(symbol);
+        }, 100);
+        
+      } catch (error) {
+        console.error('Error fetching stock details:', error);
+        
+        // Show error message in the overview
+        if (overviewElement) {
+          overviewElement.innerHTML = `
+            <div class="p-4 text-red-400">
+              <div class="flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                </svg>
+                <span>Error loading details for ${symbol}: ${error.message}</span>
+              </div>
+            </div>
+          `;
+        }
+        
+        // Also show error in search results if visible
+        if (searchResults) {
+          searchResults.innerHTML = '<div class="p-3 text-red-400 text-sm">Error loading stock details</div>';
+        }
+        
+      } finally {
+        // Remove loading state
+        document.body.classList.remove('loading');
+      }
+    }
+
+    function updateStockDetails(stock) {
+      console.log('Updating stock details with:', stock);
+      
+      // First, update the main stock information in the header
+      try {
+        const stockNameElement = document.getElementById('headerStockName');
+        const stockSymbolElement = document.getElementById('headerStockSymbol');
+        const stockPriceElement = document.querySelector('.text-\[\#54d22d\].text-\[40px\]');
+        const priceChangeElement = document.querySelector('.text-\[\#54d22d\].text-base');
+        
+        // Extract data with proper fallbacks
+        const stockName = stock.name || stock.symbol || 'N/A';
+        const stockSymbol = stock.symbol || 'N/A';
+        const currentPrice = Number(stock.price ?? stock.currentPrice ?? stock.c ?? 0);
+        const change = Number(stock.change ?? stock.d ?? 0);
+        const percentChange = Number(stock.changePercent ?? stock.dp ?? 0);
+        const currency = stock.currency || window.currentCurrency || 'USD';
+        try { window.currentCurrency = currency; } catch (e) {}
+        
+        // Update the main stock info in the header
+        if (stockNameElement) stockNameElement.textContent = stockName;
+        if (stockSymbolElement) stockSymbolElement.textContent = stockSymbol;
+        
+        // Update price
+        if (stockPriceElement) {
+          stockPriceElement.textContent = formatCurrency(currentPrice, currency);
+          // Set color based on price change
+          const color = change >= 0 ? 'text-[#54d22d]' : 'text-red-500';
+          stockPriceElement.className = `${color} text-[40px] font-bold`;
+        }
+        
+        // Update price change
+        if (priceChangeElement) {
+          const changeClass = change >= 0 ? 'text-[#54d22d]' : 'text-red-500';
+          priceChangeElement.className = `${changeClass} text-base font-medium leading-normal`;
+          priceChangeElement.textContent = `${change >= 0 ? '+' : ''}${change.toFixed(2)} (${percentChange.toFixed(2)}%)`;
+        }
+      } catch (error) {
+        console.error('Error updating stock header:', error);
+      }
+      
+      // Update the overview section with stock details
+      try {
+        const overviewContent = document.getElementById('stockOverviewContainer');
+        if (!overviewContent) {
+          console.error('Overview content container not found');
+          return;
+        }
+        
+        // Log the stock data for debugging
+        console.log('Stock data for overview:', JSON.stringify(stock, null, 2));
+        
+        // Extract all data with proper fallbacks
+        const stockName = stock.name || stock.symbol || 'N/A';
+        const stockSymbol = stock.symbol || 'N/A';
+        const currentPrice = Number(stock.price ?? stock.currentPrice ?? stock.c ?? 0);
+        const change = Number(stock.change ?? stock.d ?? 0);
+        const percentChange = Number(stock.changePercent ?? stock.dp ?? 0);
+        const openPrice = Number(stock.open ?? stock.openPrice ?? stock.o ?? 0);
+        const highPrice = Number(stock.high ?? stock.highPrice ?? stock.h ?? 0);
+        const lowPrice = Number(stock.low ?? stock.lowPrice ?? stock.l ?? 0);
+        const previousClose = Number(stock.previousClose ?? stock.pc ?? 0);
+        const volume = Number(stock.volume ?? 0);
+        const marketCap = Number(stock.marketCapitalization ?? stock.marketCap ?? 0);
+        const formattedMarketCap = formatMarketCap(marketCap);
+        const industry = stock.industry || stock.finnhubIndustry || 'N/A';
+        const exchange = stock.exchange || 'N/A';
+        const logo = stock.logo || '';
+        const currency = stock.currency || window.currentCurrency || 'USD';
+        try { window.currentCurrency = currency; } catch (e) {}
+        
+        // Set color based on price change
+        const priceColor = change >= 0 ? 'text-[#54d22d]' : 'text-red-500';
+        
+        // Create the overview HTML
+        overviewContent.innerHTML = `
+          <div class="w-full">
+            <div class="flex min-w-72 flex-1 flex-col gap-2 rounded-xl border border-[#426039] p-6 mb-6">
+              <div class="flex items-center gap-3">
+                ${logo ? `<img src="${logo}" alt="${stockName}" class="w-10 h-10 rounded-full" onerror="this.style.display='none'" />` : ''}
+                <div>
+                  <p class="text-white text-base font-medium leading-normal">${stockName}</p>
+                  <p class="text-white tracking-light text-[32px] font-bold leading-tight">${formatCurrency(currentPrice, currency)}</p>
+                  <div class="flex gap-1">
+                    <p class="text-[#a2c398] text-base font-normal leading-normal">Today</p>
+                    <p class="${priceColor} text-base font-medium leading-normal">
+                      ${change >= 0 ? '+' : ''}${change.toFixed(2)} (${Math.abs(percentChange).toFixed(2)}%)
+                    </p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="mt-6 grid grid-cols-2 md:grid-cols-3 gap-4">
+                <div class="bg-[#1e2a1b] rounded-xl p-4">
+                  <p class="text-[#a2c398] text-sm">Market Cap</p>
+                  <p class="text-white text-xl font-medium">${formattedMarketCap}</p>
+                </div>
+                <div class="bg-[#1e2a1b] rounded-xl p-4">
+                  <p class="text-[#a2c398] text-sm">Open</p>
+                  <p class="text-white text-xl font-medium">${formatCurrency(openPrice, currency)}</p>
+                </div>
+                <div class="bg-[#1e2a1b] rounded-xl p-4">
+                  <p class="text-[#a2c398] text-sm">Previous Close</p>
+                  <p class="text-white text-xl font-medium">${formatCurrency(previousClose, currency)}</p>
+                </div>
+                <div class="bg-[#1e2a1b] rounded-xl p-4">
+                  <p class="text-[#a2c398] text-sm">Day's Range</p>
+                  <p class="text-white text-xl font-medium">${formatCurrency(lowPrice, currency)} - ${formatCurrency(highPrice, currency)}</p>
+                </div>
+                <div class="bg-[#1e2a1b] rounded-xl p-4">
+                  <p class="text-[#a2c398] text-sm">Exchange</p>
+                  <p class="text-white text-xl font-medium">${exchange}</p>
+                </div>
+                ${industry ? `
+                <div class="bg-[#1e2a1b] rounded-xl p-4">
+                  <p class="text-[#a2c398] text-sm">Industry</p>
+                  <p class="text-white text-xl font-medium">${industry}</p>
+                </div>` : ''}
+              </div>
+            </div>
+            
+            ${stock.description ? `
+            <div class="mt-6">
+              <h3 class="text-white text-lg font-medium mb-2">About ${stockName}</h3>
+              <p class="text-gray-300 text-sm leading-relaxed">${stock.description}</p>
+            </div>` : ''}
+          </div>`;
+
+        // Update prediction section currency if present
+        try {
+          const predictionEl = document.getElementById('predictionContent');
+          if (predictionEl && predictionEl.dataset && predictionEl.dataset.predicted) {
+            const predictedVal = Number(predictionEl.dataset.predicted) || 0;
+            predictionEl.querySelector('.text-white.text-2xl.font-semibold').textContent = formatCurrency(predictedVal, currency);
+          }
+        } catch (e) {}
+      } catch (error) {
+        console.error('Error updating stock overview:', error);
+      }
+    }
+    
+    function formatValue(value, format) {
+      if (value === null || value === undefined) return 'N/A';
+      
+      switch (format) {
+        case 'marketCap':
+          return formatMarketCap(value);
+        case 'currency':
+          return formatCurrency(value);
+        default:
+          return value.toString();
+      }
+    }
+    
+    function formatCurrency(value, currency) {
+      // Convert to number and handle invalid values
+      const num = Number(value);
+      if (isNaN(num) || !isFinite(num)) return '$0.00';
+      
+      // For very small numbers, use more decimal places
+      const absValue = Math.abs(num);
+      const options = {
+        style: 'currency',
+        currency: currency || (window.currentCurrency || 'USD'),
+        minimumFractionDigits: 2,
+        maximumFractionDigits: absValue > 0 && absValue < 0.01 ? 6 : 2
+      };
+      
+      try {
+        return new Intl.NumberFormat('en-US', options).format(num);
+      } catch (e) {
+        // Fallback if currency code invalid
+        return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(num);
+      }
+    }
+    
+    function formatMarketCap(value) {
+      // Convert to number and handle invalid values
+      const num = Number(value);
+      if (isNaN(num) || !isFinite(num) || num === 0) return '$0.00';
+      
+      // Format based on magnitude
+      const absValue = Math.abs(num);
+      const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+        currencyDisplay: 'symbol'
+      });
+      
+      if (absValue >= 1e12) {
+        return formatter.format(num / 1e12) + 'T';
+      } else if (absValue >= 1e9) {
+        return formatter.format(num / 1e9) + 'B';
+      } else if (absValue >= 1e6) {
+        return formatter.format(num / 1e6) + 'M';
+      } else if (absValue >= 1e3) {
+        return formatter.format(num / 1e3) + 'K';
+      } else {
+        return formatter.format(num);
+      }
+    }
+  </script>
+  <script>
+  // Tab switching logic
+  (function(){
+    const tabOverview = document.getElementById('tabOverview');
+    const tabPrediction = document.getElementById('tabPrediction');
+    const overview = document.getElementById('stockOverviewContainer');
+    const prediction = document.getElementById('predictionContainer');
+    function activate(tab){
+      if (!tabOverview || !tabPrediction || !overview || !prediction) return;
+      const active = tab === 'overview';
+      overview.classList.toggle('hidden', !active);
+      prediction.classList.toggle('hidden', active);
+      // underline + color
+      if (active) {
+        tabOverview.classList.add('border-b-[#54d22d]','text-white');
+        tabOverview.classList.remove('border-b-transparent');
+        tabPrediction.classList.remove('border-b-[#54d22d]','text-white');
+        tabPrediction.classList.add('border-b-transparent');
+      } else {
+        tabPrediction.classList.add('border-b-[#54d22d]','text-white');
+        tabPrediction.classList.remove('border-b-transparent');
+        tabOverview.classList.remove('border-b-[#54d22d]','text-white');
+        tabOverview.classList.add('border-b-transparent');
+      }
+    }
+    if (tabOverview) tabOverview.addEventListener('click', ()=>activate('overview'));
+    if (tabPrediction) tabPrediction.addEventListener('click', ()=>activate('prediction'));
+  })();
+
+  // Chart management
+  let historicalChart = null;
+  let predictionChart = null;
+  let overviewChart = null;
+  let volumeChart = null;
+  let modelComparisonChart = null;
+  let currentChartType = 'line';
+
+  function initializeCharts() {
+    // Initialize Overview Chart
+    const overviewCtx = document.getElementById('overviewChart');
+    if (overviewCtx && !overviewChart) {
+      overviewChart = new Chart(overviewCtx, {
+        type: 'line',
+        data: {
+          labels: [],
+          datasets: [{
+            label: 'Stock Price',
+            data: [],
+            borderColor: '#54d22d',
+            backgroundColor: 'rgba(84, 210, 45, 0.1)',
+            borderWidth: 2,
+            fill: true,
+            tension: 0.1
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: {
+            mode: 'index',
+            intersect: false,
+          },
+          plugins: {
+            legend: {
+              labels: {
+                color: '#ffffff'
+              }
+            },
+            tooltip: {
+              mode: 'index',
+              intersect: false,
+              backgroundColor: 'rgba(30, 42, 27, 0.9)',
+              titleColor: '#ffffff',
+              bodyColor: '#a2c398',
+              borderColor: '#426039',
+              borderWidth: 1
+            }
+          },
+          scales: {
+            x: {
+              ticks: {
+                color: '#a2c398'
+              },
+              grid: {
+                color: '#426039'
+              }
+            },
+            y: {
+              ticks: {
+                color: '#a2c398'
+              },
+              grid: {
+                color: '#426039'
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Initialize Volume Chart
+    const volumeCtx = document.getElementById('volumeChart');
+    if (volumeCtx && !volumeChart) {
+      volumeChart = new Chart(volumeCtx, {
+        type: 'bar',
+        data: {
+          labels: [],
+          datasets: [{
+            label: 'Volume',
+            data: [],
+            backgroundColor: 'rgba(84, 210, 45, 0.6)',
+            borderColor: '#54d22d',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: {
+            mode: 'index',
+            intersect: false,
+          },
+          plugins: {
+            legend: {
+              labels: {
+                color: '#ffffff'
+              }
+            },
+            tooltip: {
+              mode: 'index',
+              intersect: false,
+              backgroundColor: 'rgba(30, 42, 27, 0.9)',
+              titleColor: '#ffffff',
+              bodyColor: '#a2c398',
+              borderColor: '#426039',
+              borderWidth: 1
+            }
+          },
+          scales: {
+            x: {
+              ticks: {
+                color: '#a2c398'
+              },
+              grid: {
+                color: '#426039'
+              }
+            },
+            y: {
+              ticks: {
+                color: '#a2c398'
+              },
+              grid: {
+                color: '#426039'
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Initialize Historical Chart
+    const historicalCtx = document.getElementById('historicalChart');
+    if (historicalCtx && !historicalChart) {
+      historicalChart = new Chart(historicalCtx, {
+        type: 'line',
+        data: {
+          labels: [],
+          datasets: [{
+            label: 'Stock Price',
+            data: [],
+            borderColor: '#54d22d',
+            backgroundColor: 'rgba(84, 210, 45, 0.1)',
+            borderWidth: 2,
+            fill: true,
+            tension: 0.1
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: {
+            mode: 'index',
+            intersect: false,
+          },
+          plugins: {
+            legend: {
+              labels: {
+                color: '#ffffff'
+              }
+            },
+            tooltip: {
+              mode: 'index',
+              intersect: false,
+              backgroundColor: 'rgba(30, 42, 27, 0.9)',
+              titleColor: '#ffffff',
+              bodyColor: '#a2c398',
+              borderColor: '#426039',
+              borderWidth: 1
+            }
+          },
+          scales: {
+            x: {
+              ticks: {
+                color: '#a2c398'
+              },
+              grid: {
+                color: '#426039'
+              }
+            },
+            y: {
+              ticks: {
+                color: '#a2c398'
+              },
+              grid: {
+                color: '#426039'
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Initialize Prediction Chart
+    const predictionCtx = document.getElementById('predictionChart');
+    if (predictionCtx && !predictionChart) {
+      predictionChart = new Chart(predictionCtx, {
+        type: 'line',
+        data: {
+          labels: [],
+          datasets: [
+            {
+              label: 'Historical Prices',
+              data: [],
+              borderColor: '#54d22d',
+              backgroundColor: 'rgba(84, 210, 45, 0.1)',
+              borderWidth: 2,
+              fill: false,
+              tension: 0.1
+            },
+            {
+              label: 'Predicted Prices',
+              data: [],
+              borderColor: '#ff6b6b',
+              backgroundColor: 'rgba(255, 107, 107, 0.1)',
+              borderWidth: 2,
+              fill: false,
+              tension: 0.1,
+              borderDash: [5, 5]
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: {
+            mode: 'index',
+            intersect: false,
+          },
+          plugins: {
+            legend: {
+              labels: {
+                color: '#ffffff'
+              }
+            },
+            tooltip: {
+              mode: 'index',
+              intersect: false,
+              backgroundColor: 'rgba(30, 42, 27, 0.9)',
+              titleColor: '#ffffff',
+              bodyColor: '#a2c398',
+              borderColor: '#426039',
+              borderWidth: 1
+            }
+          },
+          scales: {
+            x: {
+              ticks: {
+                color: '#a2c398'
+              },
+              grid: {
+                color: '#426039'
+              }
+            },
+            y: {
+              ticks: {
+                color: '#a2c398'
+              },
+              grid: {
+                color: '#426039'
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Initialize Model Comparison Chart
+    const modelComparisonCtx = document.getElementById('modelComparisonChart');
+    if (modelComparisonCtx && !modelComparisonChart) {
+      modelComparisonChart = new Chart(modelComparisonCtx, {
+        type: 'bar',
+        data: {
+          labels: ['Linear Regression', 'Random Forest', 'ARIMA'],
+          datasets: [{
+            label: 'RMSE Score (Lower is Better)',
+            data: [0, 0, 0],
+            backgroundColor: [
+              'rgba(84, 210, 45, 0.8)',
+              'rgba(255, 107, 107, 0.8)',
+              'rgba(255, 193, 7, 0.8)'
+            ],
+            borderColor: [
+              '#54d22d',
+              '#ff6b6b',
+              '#ffc107'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: {
+            mode: 'index',
+            intersect: false,
+          },
+          plugins: {
+            legend: {
+              labels: {
+                color: '#ffffff'
+              }
+            },
+            tooltip: {
+              mode: 'index',
+              intersect: false,
+              backgroundColor: 'rgba(30, 42, 27, 0.9)',
+              titleColor: '#ffffff',
+              bodyColor: '#a2c398',
+              borderColor: '#426039',
+              borderWidth: 1
+            }
+          },
+          scales: {
+            x: {
+              ticks: {
+                color: '#a2c398'
+              },
+              grid: {
+                color: '#426039'
+              }
+            },
+            y: {
+              ticks: {
+                color: '#a2c398'
+              },
+              grid: {
+                color: '#426039'
+              }
+            }
+          }
+        }
+      });
+    }
+  }
+
+  function switchChartType(type) {
+    if (!overviewChart || currentChartType === type) return;
+    
+    currentChartType = type;
+    
+    if (type === 'candlestick') {
+      // Switch to candlestick chart
+      overviewChart.config.type = 'bar';
+      overviewChart.data.datasets[0].backgroundColor = 'rgba(84, 210, 45, 0.8)';
+      overviewChart.data.datasets[0].borderColor = '#54d22d';
+      overviewChart.data.datasets[0].borderWidth = 1;
+      overviewChart.data.datasets[0].fill = false;
+      overviewChart.data.datasets[0].tension = 0;
+    } else {
+      // Switch to line chart
+      overviewChart.config.type = 'line';
+      overviewChart.data.datasets[0].backgroundColor = 'rgba(84, 210, 45, 0.1)';
+      overviewChart.data.datasets[0].borderColor = '#54d22d';
+      overviewChart.data.datasets[0].borderWidth = 2;
+      overviewChart.data.datasets[0].fill = true;
+      overviewChart.data.datasets[0].tension = 0.1;
+    }
+    
+    overviewChart.update();
+    
+    // Update button styles
+    document.getElementById('chartTypeLine').className = 
+      type === 'line' ? 'px-4 py-2 bg-[#54d22d] text-[#162013] rounded-lg font-medium text-sm' : 
+                        'px-4 py-2 bg-[#2e4328] text-white rounded-lg font-medium text-sm';
+    document.getElementById('chartTypeCandlestick').className = 
+      type === 'candlestick' ? 'px-4 py-2 bg-[#54d22d] text-[#162013] rounded-lg font-medium text-sm' : 
+                                'px-4 py-2 bg-[#2e4328] text-white rounded-lg font-medium text-sm';
+  }
+
+  function updateOverviewChart(symbol) {
+    if (!overviewChart) return;
+    
+    fetch(`${API_BASE_URL}/chart-data/${symbol}`)
+      .then(response => response.json())
+      .then(data => {
+        if (data.error) {
+          console.error('Error fetching chart data:', data.error);
+          return;
+        }
+        
+        overviewChart.data.labels = data.labels;
+        overviewChart.data.datasets[0].data = data.prices;
+        overviewChart.update();
+        
+        // Also update volume chart
+        updateVolumeChart(data);
+      })
+      .catch(error => {
+        console.error('Error updating overview chart:', error);
+      });
+  }
+
+  function updateVolumeChart(data) {
+    if (!volumeChart || !data.volumes) return;
+    
+    volumeChart.data.labels = data.labels;
+    volumeChart.data.datasets[0].data = data.volumes;
+    volumeChart.update();
+  }
+
+  function updateModelComparisonChart(modelResults) {
+    if (!modelComparisonChart) return;
+    
+    // Update the chart with model comparison data
+    const labels = ['Linear Regression', 'Random Forest', 'ARIMA'];
+    const data = [0, 0, 0];
+    
+    // Map model results to chart data
+    if (modelResults.lr) data[0] = modelResults.lr;
+    if (modelResults.rf) data[1] = modelResults.rf;
+    if (modelResults.arima) data[2] = modelResults.arima;
+    
+    modelComparisonChart.data.datasets[0].data = data;
+    modelComparisonChart.update();
+  }
+
+  function runAllModels(symbol, from, to) {
+    const models = ['lr', 'rf', 'arima'];
+    const results = {};
+    
+    return Promise.all(models.map(async (model) => {
+      try {
+        const params = new URLSearchParams({ symbol, model });
+        if (from) params.append('from', from);
+        if (to) params.append('to', to);
+        
+        const res = await fetch(`${API_BASE_URL}/predict?${params.toString()}`, { mode: 'cors' });
+        if (res.ok) {
+          const data = await res.json();
+          results[model] = data.rmse || 0;
+          return { model, rmse: data.rmse || 0, success: true };
+        }
+        return { model, rmse: 0, success: false };
+      } catch (error) {
+        console.error(`Error running ${model} model:`, error);
+        return { model, rmse: 0, success: false };
+      }
+    })).then(() => {
+      updateModelComparisonChart(results);
+      return results;
+    });
+  }
+
+  function updateHistoricalChart(symbol) {
+    if (!historicalChart) return;
+    
+    fetch(`${API_BASE_URL}/chart-data/${symbol}`)
+      .then(response => response.json())
+      .then(data => {
+        if (data.error) {
+          console.error('Error fetching chart data:', data.error);
+          return;
+        }
+        
+        historicalChart.data.labels = data.labels;
+        historicalChart.data.datasets[0].data = data.prices;
+        historicalChart.update();
+      })
+      .catch(error => {
+        console.error('Error updating historical chart:', error);
+      });
+  }
+
+  function updatePredictionChart(chartData) {
+    if (!predictionChart || !chartData) return;
+    
+    // Update historical prices
+    predictionChart.data.labels = chartData.labels;
+    predictionChart.data.datasets[0].data = chartData.actual_prices;
+    
+    // Update predicted prices
+    predictionChart.data.datasets[1].data = chartData.predicted_prices;
+    
+    predictionChart.update();
+  }
+
+  // Initialize charts when prediction tab is clicked
+  document.addEventListener('DOMContentLoaded', function() {
+    const tabPrediction = document.getElementById('tabPrediction');
+    if (tabPrediction) {
+      tabPrediction.addEventListener('click', function() {
+        // Small delay to ensure DOM is ready
+        setTimeout(() => {
+          initializeCharts();
+          // If we have a current symbol, load its chart data
+          if (window.currentSymbol) {
+            updateHistoricalChart(window.currentSymbol);
+          }
+        }, 100);
+      });
+    }
+    
+    // Add chart type toggle event listeners
+    const chartTypeLine = document.getElementById('chartTypeLine');
+    const chartTypeCandlestick = document.getElementById('chartTypeCandlestick');
+    
+    if (chartTypeLine) {
+      chartTypeLine.addEventListener('click', () => switchChartType('line'));
+    }
+    if (chartTypeCandlestick) {
+      chartTypeCandlestick.addEventListener('click', () => switchChartType('candlestick'));
+    }
+  });
+
+  // Prediction trigger
+  (function(){
+    const btn = document.getElementById('runPrediction');
+    const compareBtn = document.getElementById('runAllModels');
+    
+    if (btn) {
+      btn.addEventListener('click', async () => {
+        const from = (document.getElementById('predFrom') || {}).value;
+        const to = (document.getElementById('predTo') || {}).value;
+        const model = (document.getElementById('predModel') || {}).value || 'lr';
+        const headerSymbol = (document.getElementById('headerStockSymbol') || {}).textContent || '';
+        const symbol = headerSymbol && headerSymbol.trim() ? headerSymbol.trim() : (window.currentSymbol || '');
+        const content = document.getElementById('predictionContent');
+        if (!symbol) {
+          if (content) content.textContent = 'Please select a stock first.';
+          return;
+        }
+        try {
+          if (content) content.innerHTML = '<div class="text-gray-400">Running prediction...</div>';
+          const params = new URLSearchParams({ symbol, model });
+          if (from) params.append('from', from);
+          if (to) params.append('to', to);
+          const res = await fetch(`${API_BASE_URL}/predict?${params.toString()}`, { mode: 'cors' });
+          if (!res.ok) throw new Error(`Prediction failed: ${res.status}`);
+          const data = await res.json();
+          const predicted = Number(data.predicted_price || 0);
+          const rmse = Number(data.rmse || 0);
+          const used = data.model || model;
+          const currency = data.currency || window.currentCurrency || 'USD';
+          try { window.currentCurrency = currency; } catch (e) {}
+          
+          // Update prediction content
+          if (content) {
+            content.innerHTML = `
+              <div class="flex items-center justify-between">
+                <div>
+                  <div class="text-[#a2c398]">Model: ${used.toUpperCase()}</div>
+                  <div class="text-white text-2xl font-semibold">${formatCurrency(predicted, currency)}</div>
+                </div>
+                <div class="text-xs text-gray-400">RMSE: ${rmse.toFixed(2)}</div>
+              </div>
+              ${data.note ? `<div class=\"text-xs text-gray-500 mt-2\">${data.note}</div>` : ''}
+            `;
+            try { content.dataset.predicted = String(predicted); } catch (e) {}
+          }
+          
+          // Update charts with prediction data
+          if (data.chart_data) {
+            updatePredictionChart(data.chart_data);
+          }
+          
+          // Update historical chart
+          updateHistoricalChart(symbol);
+          
+        } catch (e) {
+          console.error(e);
+          if (content) content.textContent = 'Prediction error. Check console for details.';
+        }
+      });
+    }
+    
+    if (compareBtn) {
+      compareBtn.addEventListener('click', async () => {
+        const from = (document.getElementById('predFrom') || {}).value;
+        const to = (document.getElementById('predTo') || {}).value;
+        const headerSymbol = (document.getElementById('headerStockSymbol') || {}).textContent || '';
+        const symbol = headerSymbol && headerSymbol.trim() ? headerSymbol.trim() : (window.currentSymbol || '');
+        const content = document.getElementById('predictionContent');
+        
+        if (!symbol) {
+          if (content) content.textContent = 'Please select a stock first.';
+          return;
+        }
+        
+        try {
+          if (content) content.innerHTML = '<div class="text-gray-400">Running all models for comparison...</div>';
+          
+          // Run all models and update comparison chart
+          const results = await runAllModels(symbol, from, to);
+          
+          if (content) {
+            content.innerHTML = `
+              <div class="text-[#a2c398] mb-2">Model Comparison Results:</div>
+              <div class="space-y-2">
+                <div class="flex justify-between">
+                  <span class="text-white">Linear Regression:</span>
+                  <span class="text-[#54d22d]">RMSE: ${results.lr?.toFixed(4) || 'N/A'}</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-white">Random Forest:</span>
+                  <span class="text-[#ff6b6b]">RMSE: ${results.rf?.toFixed(4) || 'N/A'}</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-white">ARIMA:</span>
+                  <span class="text-[#ffc107]">RMSE: ${results.arima?.toFixed(4) || 'N/A'}</span>
+                </div>
+              </div>
+              <div class="text-xs text-gray-500 mt-3">Lower RMSE indicates better model performance.</div>
+            `;
+          }
+          
+        } catch (e) {
+          console.error(e);
+          if (content) content.textContent = 'Model comparison error. Check console for details.';
+        }
+      });
+    }
+  })();
+  </script>
+</body>
+</html>

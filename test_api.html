@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <h1>API Test Page</h1>
+    <button onclick="testApi()">Test API</button>
+    <div id="result"></div>
+
+    <script>
+        async function testApi() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.textContent = 'Testing API...';
+            
+            try {
+                const response = await axios.get('/api/search', {
+                    params: { q: 'AAPL' },
+                    baseURL: 'http://localhost:5000'
+                });
+                resultDiv.textContent = 'API Response: ' + JSON.stringify(response.data, null, 2);
+                console.log('API Response:', response.data);
+            } catch (error) {
+                resultDiv.textContent = 'Error: ' + error.message;
+                if (error.response) {
+                    console.error('Error response:', {
+                        status: error.response.status,
+                        data: error.response.data,
+                        headers: error.response.headers
+                    });
+                } else if (error.request) {
+                    console.error('No response received:', error.request);
+                } else {
+                    console.error('Error:', error.message);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
