@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StockWise - Smart Stock Analysis & Predictions</title>
+    <meta name="description" content="Advanced stock analysis platform with machine learning predictions and interactive charts">
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://accounts.google.com">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Noto+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><path d='M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z' fill='%2354d22d'/></svg>">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="./css/styles.css">
+    
+    <!-- Google Sign-In -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <svg width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z" fill="currentColor"/>
+                    </svg>
+                    StockWise
+                </a>
+                
+                <nav class="nav">
+                    <a href="#" class="nav-link active">Home</a>
+                    <a href="./portfolio.html" class="nav-link">Portfolio</a>
+                    <a href="./stocks.html" class="nav-link">Analysis</a>
+                    <a href="./predictions.html" class="nav-link">Predictions</a>
+                </nav>
+                
+                <div class="search-container">
+                    <svg class="search-icon" width="20" height="20" viewBox="0 0 256 256" fill="currentColor">
+                        <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"/>
+                    </svg>
+                    <input type="text" class="search-input" placeholder="Search stocks..." id="stockSearch">
+                </div>
+                
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <button class="btn btn-secondary btn-sm">
+                        <svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor">
+                            <path d="M221.8,175.94C216.25,166.38,208,139.33,208,104a80,80,0,1,0-160,0c0,35.34-8.26,62.38-13.81,71.94A16,16,0,0,0,48,200H88.81a40,40,0,0,0,78.38,0H208a16,16,0,0,0,13.8-24.06ZM128,216a24,24,0,0,1-22.62-16h45.24A24,24,0,0,1,128,216ZM48,184c7.7-13.24,16-43.92,16-80a64,64,0,1,1,128,0c0,36.05,8.28,66.73,16,80Z"/>
+                        </svg>
+                    </button>
+                    <div class="user-avatar" style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #54d22d, #4ab826);"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container" style="padding-top: 2rem; padding-bottom: 2rem;">
+        <!-- Welcome Section -->
+        <section class="mb-4">
+            <h1 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; background: linear-gradient(135deg, #54d22d, #4ab826); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                Welcome to StockWise
+            </h1>
+            <p style="font-size: 1.125rem; color: var(--color-text-secondary); max-width: 600px;">
+                Advanced stock analysis platform powered by machine learning. Get intelligent predictions, interactive charts, and comprehensive market insights.
+            </p>
+        </section>
+
+        <!-- Quick Stats -->
+        <section class="grid grid-cols-3 mb-4">
+            <div class="card text-center">
+                <div style="font-size: 2rem; font-weight: 700; color: var(--color-primary); margin-bottom: 0.5rem;">
+                    $12,345.67
+                </div>
+                <div style="color: var(--color-text-secondary); font-size: 0.875rem;">Portfolio Value</div>
+                <div style="color: var(--color-success); font-size: 0.875rem; margin-top: 0.25rem;">
+                    +12.34% ↗
+                </div>
+            </div>
+            
+            <div class="card text-center">
+                <div style="font-size: 2rem; font-weight: 700; color: var(--color-accent); margin-bottom: 0.5rem;">
+                    87%
+                </div>
+                <div style="color: var(--color-text-secondary); font-size: 0.875rem;">Prediction Accuracy</div>
+                <div style="color: var(--color-success); font-size: 0.875rem; margin-top: 0.25rem;">
+                    Last 30 days
+                </div>
+            </div>
+            
+            <div class="card text-center">
+                <div style="font-size: 2rem; font-weight: 700; color: var(--color-secondary); margin-bottom: 0.5rem;">
+                    24
+                </div>
+                <div style="color: var(--color-text-secondary); font-size: 0.875rem;">Stocks Tracked</div>
+                <div style="color: var(--color-text-secondary); font-size: 0.875rem; margin-top: 0.25rem;">
+                    Active positions
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Actions -->
+        <section class="card mb-4">
+            <div class="card-header">
+                <h2 class="card-title">Quick Actions</h2>
+            </div>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <button class="btn btn-primary" onclick="showStockAnalysis()">
+                    <svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor">
+                        <path d="M232,208a8,8,0,0,1-8,8H32a8,8,0,0,1-8-8V48a8,8,0,0,1,16,0V156.69l50.34-50.35a8,8,0,0,1,11.32,0L128,132.69,180.69,80H160a8,8,0,0,1,0-16h40a8,8,0,0,1,8,8v40a8,8,0,0,1-16,0V91.31l-58.34,58.35a8,8,0,0,1-11.32,0L96,123.31,48,171.31V200H224A8,8,0,0,1,232,208Z"/>
+                    </svg>
+                    Analyze Stock
+                </button>
+                <button class="btn btn-outline" onclick="showPredictions()">
+                    <svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor">
+                        <path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40ZM40,56H216V88H40ZM40,200V104H216v96Z"/>
+                    </svg>
+                    View Predictions
+                </button>
+                <button class="btn btn-secondary" onclick="showPortfolio()">
+                    <svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor">
+                        <path d="M224,48H32A16,16,0,0,0,16,64V192a16,16,0,0,0,16,16H224a16,16,0,0,0,16-16V64A16,16,0,0,0,224,48ZM32,64H224V88H32ZM32,192V104H224v88Z"/>
+                    </svg>
+                    Manage Portfolio
+                </button>
+            </div>
+        </section>
+
+        <!-- Market Overview Chart -->
+        <section class="chart-container">
+            <div class="card-header">
+                <h2 class="card-title">Market Overview</h2>
+                <div class="chart-controls">
+                    <button class="btn btn-sm btn-outline active" data-period="1d">1D</button>
+                    <button class="btn btn-sm btn-outline" data-period="1w">1W</button>
+                    <button class="btn btn-sm btn-outline" data-period="1m">1M</button>
+                    <button class="btn btn-sm btn-outline" data-period="3m">3M</button>
+                    <button class="btn btn-sm btn-outline" data-period="1y">1Y</button>
+                </div>
+            </div>
+            <div class="chart-wrapper">
+                <canvas id="marketChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Recent Activity -->
+        <section class="grid grid-cols-2">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Top Performers</h3>
+                </div>
+                <div id="topPerformers">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Recent Predictions</h3>
+                </div>
+                <div id="recentPredictions">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Scripts -->
+    <script type="module" src="./js/main.js"></script>
+</body>
+</html>
